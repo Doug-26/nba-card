@@ -1,0 +1,24 @@
+@if (players().length > 0) {
+<div class="row g-3">
+    @for (player of players(); track $index) {
+    <div class="col-12 col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body bg-dark text-white rounded">
+                <h5 class="card-title fw-bold">{{ player.firstname }} {{ player.lastname }}</h5>
+                <div class="text-warning mb-3">NBA Season {{ selectedSeason() }}</div>
+                <div class="mb-2"><strong>Country:</strong> {{ player.birth.country }}</div>
+                <div class="mb-2"><strong>Birthdate:</strong> {{ player.birth.date }}</div>
+                <div class="mb-2"><strong>Jersey:</strong> #{{ player.leagues.standard?.jersey }}</div>
+                <div class="mb-2"><strong>Position:</strong> {{ player.leagues.standard?.pos }}</div>
+                <div class="mb-2"><strong>Height:</strong> {{ player.height.feets }}' {{ player.height.inches }}"</div>
+                <div class="mb-2"><strong>Weight:</strong> {{ player.weight.pounds }}lbs ({{ player.weight.kilograms
+                    }}kg)</div>
+                <div class="mb-2"><strong>Years in the NBA:</strong> {{ player.nba.pro }}</div>
+            </div>
+        </div>
+    </div>
+    }
+</div>
+} @else {
+<div class="alert alert-info">No players found for this team.</div>
+}

@@ -1,0 +1,37 @@
+<div class="d-flex flex-nowrap">
+    <div class="bg-light p-3 border-end flex-shrink-0" style="width: 280px; min-width: 280px;">
+        <div class="d-flex align-items-center mb-4">
+            <h6 class="text-uppercase fw-bold text-secondary mb-0 me-2">NBA Teams</h6>
+            <div class="dropdown ms-2">
+                <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="seasonDropdown"
+                    data-bs-toggle="dropdown" aria-expanded="false" [disabled]="seasons().length === 0">
+                    Season: {{ selectedSeason() }}
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="seasonDropdown">
+                    @for (season of seasons(); track $index) {
+                    <li>
+                        <a class="dropdown-item" [class.active]="season === selectedSeason()"
+                            (click)="onSeasonChange(season)">
+                            {{ season }}
+                        </a>
+                    </li>
+                    }
+                </ul>
+            </div>
+        </div>
+        <ul class="list-unstyled">
+            @for (item of teams(); track $index) {
+            @if(item.code != 'SAS') {
+            <li class="mb-3 d-flex align-items-center gap-2" (click)="selectTeam(item)"
+                [class.active]="selectedTeam()?.id === item.id">
+                <img [src]="item.logo" [alt]="item.name" width="24" height="24">
+                <span class="text-truncate" style="max-width: 200px; display: inline-block;">{{ item.name }}</span>
+            </li>
+            }
+            }
+        </ul>
+    </div>
+    <div class="flex-grow-1 p-3" style="min-width: 0;">
+        <app-player-info [players]="players()" [selectedSeason]="selectedSeason()"></app-player-info>
+    </div>
+</div>

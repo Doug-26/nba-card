@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { from, fromEvent, of } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -8,5 +9,5 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.css'
 })
 export class App {
-  protected title = 'angular20';
+  
 }
